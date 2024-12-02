@@ -1,11 +1,5 @@
 ﻿namespace AdventOfCode2024.Day01;
 
-public interface ISolver
-{
-    public string PartOne(string[] input);
-    public string PartTwo(string[] input);
-}
-
 public class DayOneSolver : ISolver
 {
     public string PartOne(string[] input)

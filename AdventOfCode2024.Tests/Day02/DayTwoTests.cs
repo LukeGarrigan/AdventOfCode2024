@@ -1,4 +1,5 @@
 ﻿using AdventOfCode2024.Day01;
+using AdventOfCode2024.Day02;
 using FluentAssertions;
 
 namespace AdventOfCode2024.Tests.Day02;

@@ -1,4 +1,4 @@
-﻿namespace AdventOfCode2024.Day01;
+﻿namespace AdventOfCode2024.Day02;
 
 public class DayTwoSolver : ISolver
 {

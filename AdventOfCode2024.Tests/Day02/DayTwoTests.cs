@@ -34,6 +34,6 @@ public class DayTwoTests
     public void Should_Solve_Part_Two()
     {
         var result = _dayTwoSolver.PartTwo(_input);
-        result.Should().Be("31");
+        result.Should().Be("4");
     }
 }

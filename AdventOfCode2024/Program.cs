@@ -3,4 +3,4 @@
 var lines = File.ReadAllLines("Day02/input.txt");
 
 var solver = new DayTwoSolver();
-Console.WriteLine(solver.PartOne(lines));
+Console.WriteLine(solver.PartTwo(lines));

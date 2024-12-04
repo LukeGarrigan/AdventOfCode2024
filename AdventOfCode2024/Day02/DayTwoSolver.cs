@@ -8,6 +8,8 @@ public class DayTwoSolver : ISolver
         foreach (var report in reports)
         {
             var levels = report.SplitToInt();
+
+
             if (IsReportSafe(levels.ToList()))
             {
                 safe++;
@@ -49,29 +51,20 @@ public class DayTwoSolver : ISolver
 
     private static bool IsReportSafe(List<int> levels)
     {
-        if (levels[1] == levels[0]) return false;
-        var ascending = levels[1] > levels[0];
+        var incrementingOrDecrementing = levels.SequenceEqual(levels.OrderByDescending(x => x)) ||
+                                         levels.SequenceEqual(levels.OrderBy(x => x).ToList());
 
-        var isValid = true;
+        if (!incrementingOrDecrementing) return false;
         for (var i = 1; i < levels.Count; i++)
         {
-            if (!IsCorrectlyAscending(ascending, levels, i) &&
-                !IsCorrectlyDescending(ascending, levels, i))
+
+            var difference = Math.Abs(levels[i] - levels[i - 1]);
+            if (difference is 0 or > 3)
             {
                 return false;
             }
         }
 
         return true;
-    }
-
-    private static bool IsCorrectlyDescending(bool ascending, List<int> levels, int i)
-    {
-        return !ascending && levels[i] < levels[i - 1] && levels[i] >= levels[i - 1] - 3;
-    }
-
-    private static bool IsCorrectlyAscending(bool ascending, List<int> levels, int i)
-    {
-        return ascending && levels[i] > levels[i - 1] && levels[i] <= levels[i - 1] + 3;
     }
 }

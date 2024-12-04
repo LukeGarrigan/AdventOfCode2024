@@ -53,6 +53,52 @@ public class DayFourSolver : ISolver
 
     public string PartTwo(string[] reports)
     {
-        throw new NotImplementedException();
-    }
+        // M.S
+        // .A.
+        // M.S
+        
+        // S.S
+        // .A.
+        // M.M
+        
+        // M.M 
+        // .A.
+        // S.S
+        
+        // S.M
+        // .A.
+        // S.M
+            var count = 0;
+            for (var i = 0; i < reports.Length; i++)
+            {
+                for (var j = 0; j < reports[i].Length; j++)
+                {
+                    if (i + 2 < reports.Length && j + 2 < reports[i].Length && reports[i][j] == 'M' && reports[i + 2][j] == 'S' && reports[i + 1][j + 1] == 'A' &&
+                        reports[i][j + 2] == 'M' && reports[i + 2][j + 2] == 'S')
+                    {
+                        count++;
+                    }
+                    
+                    if (i + 2 < reports.Length  && j + 2 < reports[i].Length && reports[i][j] == 'S' && reports[i + 2][j] == 'S' && reports[i + 1][j + 1] == 'A' &&
+                        reports[i][j + 2] == 'M' && reports[i + 2][j + 2] == 'M')
+                    {
+                        count++;
+                    } 
+                    
+                    if (i + 2 < reports.Length && j + 2 < reports[i].Length && reports[i][j] == 'M' && reports[i + 2][j] == 'M' && reports[i + 1][j + 1] == 'A' &&
+                        reports[i][j + 2] == 'S' && reports[i + 2][j + 2] == 'S')
+                    {
+                        count++;
+                    }
+                    
+                    if (i + 2 < reports.Length && j + 2 < reports[i].Length && reports[i][j] == 'S' && reports[i + 2][j] == 'M' && reports[i + 1][j + 1] == 'A' &&
+                        reports[i][j + 2] == 'S' && reports[i + 2][j + 2] == 'M')
+                    {
+                        count++;
+                    }
+                 
+                }
+            }
+    
+            return count.ToString();}
 }

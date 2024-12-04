@@ -1,6 +1,6 @@
 ﻿using AdventOfCode2024.Day01;
 
-var lines = File.ReadAllLines("Day02/input.txt");
+var lines = File.ReadAllLines("Day03/input.txt");
 
-var solver = new DayTwoSolver();
+var solver = new DayThreeSolver();
 Console.WriteLine(solver.PartTwo(lines));

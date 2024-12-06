@@ -38,6 +38,6 @@ public class DaySixTests
     public void Should_Solve_Part_Two()
     {
         var result = _daySixSolver.PartTwo(_input);
-        result.Should().Be("123");
+        result.Should().Be("6");
     }
 }

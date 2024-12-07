@@ -114,7 +114,6 @@ public class DaySixSolver : ISolver
 
                     if (IsInfinite(currentMaze))
                     {
-
                         infiniteIdeas++;
                     }
                 }

@@ -57,21 +57,26 @@ public class DayNineSolver : ISolver
 
         while (rightIndex >= 0)
         {
-            var currentFile = outList[rightIndex];
-            while (currentFile == ".")
+            if (outList[rightIndex] == ".")
             {
                 rightIndex--;
-                currentFile = outList[rightIndex];
+                continue;
             }
 
-            var fileStartIndex = outList.IndexOf(currentFile);
-            var blockSize = (rightIndex - fileStartIndex) + 1;
+            var currentFile = outList[rightIndex];
+            var fileEndIndex = rightIndex;
+            while (rightIndex >= 0 && outList[rightIndex] == currentFile)
+            {
+                rightIndex--;
+            }
 
+            var fileStartIndex = rightIndex + 1;
+            var blockSize = (fileEndIndex - fileStartIndex) + 1;
 
             var emptyBlockSize = 0;
-            var index = 0;
             var emptyBlockStart = 0;
-            while (emptyBlockSize < blockSize && index < outList.Count)
+            var index = 0;
+            for (index = 0; index < fileStartIndex; index++)
             {
                 if (outList[index] == ".")
                 {
@@ -79,26 +84,26 @@ public class DayNineSolver : ISolver
                     {
                         emptyBlockStart = index;
                     }
-
                     emptyBlockSize++;
+                    if (emptyBlockSize >= blockSize)
+                    {
+                        break;
+                    }
                 }
                 else
                 {
                     emptyBlockSize = 0;
                 }
-
-                index++;
             }
 
             if (index < fileStartIndex)
             {
                 for (var i = 0; i < blockSize; i++)
                 {
-                    (outList[emptyBlockStart + i], outList[fileStartIndex + i]) = (outList[fileStartIndex + i], outList[emptyBlockStart + i]);
+                    (outList[emptyBlockStart + i], outList[fileStartIndex + i]) =
+                        (outList[fileStartIndex + i], outList[emptyBlockStart + i]);
                 }
             }
-
-            rightIndex = fileStartIndex - 1;
         }
 
 

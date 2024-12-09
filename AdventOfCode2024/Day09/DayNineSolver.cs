@@ -52,7 +52,6 @@ public class DayNineSolver : ISolver
     public string PartTwo(string[] lines)
     {
         var outList = GetMemoryList(lines);
-
         var rightIndex = outList.Count - 1;
 
         while (rightIndex >= 0)
@@ -75,7 +74,7 @@ public class DayNineSolver : ISolver
 
             var emptyBlockSize = 0;
             var emptyBlockStart = 0;
-            var index = 0;
+            int index;
             for (index = 0; index < fileStartIndex; index++)
             {
                 if (outList[index] == ".")
@@ -84,6 +83,7 @@ public class DayNineSolver : ISolver
                     {
                         emptyBlockStart = index;
                     }
+
                     emptyBlockSize++;
                     if (emptyBlockSize >= blockSize)
                     {
@@ -96,7 +96,7 @@ public class DayNineSolver : ISolver
                 }
             }
 
-            if (index < fileStartIndex)
+            if (emptyBlockSize >= blockSize)
             {
                 for (var i = 0; i < blockSize; i++)
                 {
@@ -118,7 +118,6 @@ public class DayNineSolver : ISolver
 
         return checkSum.ToString();
     }
-    // 6307653502443 too high
 
     private static List<string> GetMemoryList(string[] lines)
     {

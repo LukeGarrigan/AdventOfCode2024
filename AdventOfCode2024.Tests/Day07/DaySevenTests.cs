@@ -5,7 +5,7 @@ namespace AdventOfCode2024.Tests.Day07;
 
 public class DaySevenTests
 {
-    private DaySevenSolver _daySevenSolver = new();
+    private readonly DaySevenSolver _daySevenSolver = new();
 
     private string[] _input;
 

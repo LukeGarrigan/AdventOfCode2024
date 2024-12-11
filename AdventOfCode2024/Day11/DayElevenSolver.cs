@@ -28,8 +28,6 @@ public class DayElevenSolver : ISolver
     public string PartTwo(string[] lines)
     {
         return PartOne(lines);
-
-        // 1719712269 too low
     }
 
     private BigInteger Solve(string stone, int blinks)

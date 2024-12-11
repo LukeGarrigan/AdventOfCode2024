@@ -6,7 +6,7 @@ namespace AdventOfCode2024.Day11;
 public class DayElevenSolver : ISolver
 {
     private readonly int _blinks;
-    private readonly Dictionary<(string, int), int> _seen = new();
+    private readonly Dictionary<(string, int), BigInteger> _seen = new();
 
     public DayElevenSolver(int blinks)
     {
@@ -16,7 +16,7 @@ public class DayElevenSolver : ISolver
     public string PartOne(string[] lines)
     {
         var line = lines[0].Split(" ").ToList();
-        var total = 0;
+        BigInteger total = 0;
         foreach (var stone in line)
         {
             total += Solve(stone, _blinks);
@@ -32,9 +32,9 @@ public class DayElevenSolver : ISolver
         // 1719712269 too low
     }
 
-    private int Solve(string stone, int blinks)
+    private BigInteger Solve(string stone, int blinks)
     {
-        int res;
+        BigInteger res;
         if (_seen.TryGetValue((stone, blinks), out var cachedResult))
         {
             return cachedResult;

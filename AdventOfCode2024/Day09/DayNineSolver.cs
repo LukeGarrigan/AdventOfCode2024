@@ -5,13 +5,6 @@ namespace AdventOfCode2024.Day09;
 
 public class DayNineSolver : ISolver
 {
-    private bool _isPartOne;
-
-    public DayNineSolver()
-    {
-        _isPartOne = true;
-    }
-
     public string PartOne(string[] lines)
     {
         var outList = GetMemoryList(lines);

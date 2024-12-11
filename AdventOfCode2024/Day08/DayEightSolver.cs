@@ -4,13 +4,6 @@ namespace AdventOfCode2024.Day08;
 
 public class DayEightSolver : ISolver
 {
-    private bool _isPartOne;
-
-    public DayEightSolver()
-    {
-        _isPartOne = true;
-    }
-
     public string PartOne(string[] lines)
     {
         char[][] grid = lines.ToCharGrid();

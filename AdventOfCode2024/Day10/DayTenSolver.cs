@@ -2,13 +2,6 @@
 
 public class DayTenSolver : ISolver
 {
-    private bool _isPartOne;
-
-    public DayTenSolver()
-    {
-        _isPartOne = true;
-    }
-
     public string PartOne(string[] lines)
     {
         var map = lines.ToIntGrid();

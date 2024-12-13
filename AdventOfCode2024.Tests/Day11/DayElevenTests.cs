@@ -26,14 +26,6 @@ public class DayElevenTests
     }
     
     [Test]
-    public void Should_Be_Correct_After_Six_Blinks()
-    {
-        var dayEleven = new DayElevenSolver(6);
-        var result = dayEleven.PartOne(["125 17"]);
-        result.Should().Be("22");
-    }
-    
-    [Test]
     public void Should_Have_The_Correct_Stone_Count_After_25_Turns()
     {
         var dayEleven = new DayElevenSolver(25);

@@ -28,6 +28,6 @@ public class DayFourteenTests
     {
         var solver = new DayFourteenSolver();
         var result = solver.PartTwo(_input);
-        result.Should().Be("something here too ");
+        result.Should().Be("something here too");
     }
 }

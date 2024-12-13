@@ -1,15 +1,33 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using System.Numerics;
 using System.Text.RegularExpressions;
 
 namespace AdventOfCode2024.Day13;
 
 public class DayThirteenSolver : ISolver
 {
-    record Game(Button A, Button B, int PrizeX, int PrizeY);
-
-    record Button(int XCost, int YCost);
+    record Game(Button A, Button B, BigInteger PrizeX, BigInteger PrizeY);
+    record Button(BigInteger XCost, BigInteger YCost);
+    private Dictionary<(BigInteger, BigInteger), BigInteger> _memo = new();
 
     public string PartOne(string[] lines)
+    {
+        var games = GetGames(lines);
+
+        BigInteger totalCost = 0;
+        foreach (var game in games)
+        {
+            _memo = new Dictionary<(BigInteger,  BigInteger), BigInteger>();
+            var cost = Solve(game, 0, 0, 0);
+            if (cost != int.MaxValue)
+            {
+                totalCost += cost;
+            }
+        }
+
+        return totalCost.ToString();
+    }
+
+    private static List<Game> GetGames(string[] lines)
     {
         var games = new List<Game>();
         for (var i = 0; i < lines.Length; i += 4)
@@ -32,23 +50,11 @@ public class DayThirteenSolver : ISolver
             games.Add(new Game(new Button(aX, aY), new Button(bX, bY), prizeX, prizeY));
         }
 
-        var totalCost = 0;
-        foreach (var game in games)
-        {
-            _memo = new Dictionary<(int, int), int>();
-            var cost = Solve(game, 0, 0, 0);
-            if (cost != int.MaxValue)
-            {
-                totalCost += cost;
-            }
-        }
-
-        return totalCost.ToString();
+        return games;
     }
 
-    private Dictionary<(int, int), int> _memo = new();
 
-    private int Solve(Game game, int x, int y, int tokens)
+    private BigInteger Solve(Game game, BigInteger x, BigInteger y, int tokens)
     {
         if (x > game.PrizeX || y > game.PrizeY)
         {
@@ -65,7 +71,7 @@ public class DayThirteenSolver : ISolver
             return _memo[(x, y)];
         }
 
-        int result = Math.Min(Solve(game, x + game.A.XCost, y + game.A.YCost, tokens + 3),
+        BigInteger result = BigInteger.Min(Solve(game, x + game.A.XCost, y + game.A.YCost, tokens + 3),
             Solve(game, x + game.B.XCost, y + game.B.YCost, tokens + 1));
 
         _memo[(x, y)] = result;
@@ -90,16 +96,16 @@ public class DayThirteenSolver : ISolver
 
             var prizeMatches = reg.Matches(lines[i + 2]);
 
-            var prizeX = int.Parse(prizeMatches[0].Value) * 1000000;
-            var prizeY = int.Parse(prizeMatches[1].Value) * 1000000;
+            var prizeX = BigInteger.Parse(prizeMatches[0].Value) + 10000000000000;
+            var prizeY = BigInteger.Parse(prizeMatches[1].Value) + 10000000000000;
 
             games.Add(new Game(new Button(aX, aY), new Button(bX, bY), prizeX, prizeY));
         }
-
-        var totalCost = 0;
+ 
+        BigInteger totalCost = 0;
         foreach (var game in games)
         {
-            _memo = new Dictionary<(int, int), int>();
+            _memo = new Dictionary<(BigInteger, BigInteger), BigInteger>();
             var cost = Solve(game, 0, 0, 0);
             if (cost != int.MaxValue)
             {

@@ -1,5 +1,4 @@
-﻿using AdventOfCode2024.Day12;
-using AdventOfCode2024.Day13;
+﻿using AdventOfCode2024.Day13;
 
 var lines = File.ReadAllLines("Day13/input.txt");
 

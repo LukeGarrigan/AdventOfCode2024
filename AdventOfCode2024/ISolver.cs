@@ -5,4 +5,3 @@ public interface ISolver
     public string PartOne(string[] input);
     public string PartTwo(string[] input);
 }
-

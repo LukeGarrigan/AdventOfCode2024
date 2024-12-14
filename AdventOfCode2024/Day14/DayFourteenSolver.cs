@@ -31,18 +31,7 @@ public class DayFourteenSolver : ISolver
 
     public string PartOne(string[] lines)
     {
-        var robots = new List<Robot>();
-        foreach (var line in lines)
-        {
-            var regex = new Regex(@"\d+|-\d+");
-            var matches = regex.Matches(line);
-            var (x, y, xs, ys) =
-                (int.Parse(matches[0].Value),
-                    int.Parse(matches[1].Value),
-                    int.Parse(matches[2].Value),
-                    int.Parse(matches[3].Value));
-            robots.Add(new Robot(x, y, xs, ys));
-        }
+        var robots = GetRobots(lines);
 
         var ticks = 100;
         for (var i = 0; i < ticks; i++)
@@ -110,18 +99,7 @@ public class DayFourteenSolver : ISolver
 
     public string PartTwo(string[] lines)
     {
-        var robots = new List<Robot>();
-        foreach (var line in lines)
-        {
-            var regex = new Regex(@"\d+|-\d+");
-            var matches = regex.Matches(line);
-            var (x, y, xs, ys) =
-                (int.Parse(matches[0].Value),
-                    int.Parse(matches[1].Value),
-                    int.Parse(matches[2].Value),
-                    int.Parse(matches[3].Value));
-            robots.Add(new Robot(x, y, xs, ys));
-        }
+        var robots = GetRobots(lines);
 
         var ticks = 10000000000;
 
@@ -164,7 +142,7 @@ public class DayFourteenSolver : ISolver
 
             if (contiguous > 10)
             {
-                Console.WriteLine($"Tick {i}");
+                Console.WriteLine($"Tick {i + 1}");
                 for (var row = 0; row < _tilesTall; row++)
                 {
                     for (var col = 0; col < _tilesWide; col++)
@@ -185,5 +163,23 @@ public class DayFourteenSolver : ISolver
         }
 
         return "";
+    }
+
+    private static List<Robot> GetRobots(string[] lines)
+    {
+        var robots = new List<Robot>();
+        foreach (var line in lines)
+        {
+            var regex = new Regex(@"\d+|-\d+");
+            var matches = regex.Matches(line);
+            var (x, y, xs, ys) =
+                (int.Parse(matches[0].Value),
+                    int.Parse(matches[1].Value),
+                    int.Parse(matches[2].Value),
+                    int.Parse(matches[3].Value));
+            robots.Add(new Robot(x, y, xs, ys));
+        }
+
+        return robots;
     }
 }

@@ -110,6 +110,80 @@ public class DayFourteenSolver : ISolver
 
     public string PartTwo(string[] lines)
     {
-        return "something here too";
+        var robots = new List<Robot>();
+        foreach (var line in lines)
+        {
+            var regex = new Regex(@"\d+|-\d+");
+            var matches = regex.Matches(line);
+            var (x, y, xs, ys) =
+                (int.Parse(matches[0].Value),
+                    int.Parse(matches[1].Value),
+                    int.Parse(matches[2].Value),
+                    int.Parse(matches[3].Value));
+            robots.Add(new Robot(x, y, xs, ys));
+        }
+
+        var ticks = 10000000000;
+
+        var grid = new char[_tilesTall, _tilesWide];
+        for (var i = 0; i < ticks; i++)
+        {
+            grid = new char[_tilesTall, _tilesWide];
+            foreach (var robot in robots)
+            {
+                var newX = robot.X + robot.Xs;
+                var newY = robot.Y + robot.Ys;
+                robot.X = ((newX % _tilesWide) + _tilesWide) % _tilesWide;
+                robot.Y = ((newY % _tilesTall) + _tilesTall) % _tilesTall;
+                grid[robot.Y, robot.X] = '#';
+            }
+
+
+            var contiguous = 0;
+            for (var row = 0; row < _tilesTall; row++)
+            {
+                var columnsInARow = 0;
+                for (var col = 0; col < _tilesWide; col++)
+                {
+                    if (grid[row, col] == '#')
+                    {
+                        columnsInARow++;
+                    }
+                    else
+                    {
+                        columnsInARow = 0;
+                    }
+
+                    if (columnsInARow > contiguous)
+                    {
+                        contiguous = columnsInARow;
+                    }
+                }
+            }
+
+
+            if (contiguous > 10)
+            {
+                Console.WriteLine($"Tick {i}");
+                for (var row = 0; row < _tilesTall; row++)
+                {
+                    for (var col = 0; col < _tilesWide; col++)
+                    {
+                        if (grid[row, col] == '#')
+                        {
+                            Console.Write(grid[row, col]);
+                        }
+                        else
+                        {
+                            Console.Write('.');
+                        }
+                    }
+
+                    Console.WriteLine("");
+                }
+            }
+        }
+
+        return "";
     }
 }

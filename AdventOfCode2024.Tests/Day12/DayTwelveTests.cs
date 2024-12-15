@@ -32,24 +32,24 @@ public class DayTwelveTests
     {
         var dayTwelve = new DayTwelveSolver();
 
-        string[] secondInput =
-        [
-            "RRRRIICCFF",
-            "RRRRIICCCF",
-            "VVRRRCCFFF",
-            "VVRCCCJFFF",
-            "VVVVCJJCFE",
-            "VVIVCCJJEE",
-            "VVIIICJJEE",
-            "MIIIIIJJEE",
-            "MIIISIJEEE",
-            "MMMISSJEEE"
-        ];
-            
-        var result = dayTwelve.PartOne(secondInput);
+        var input =
+            """
+            RRRRIICCFF
+            RRRRIICCCF
+            VVRRRCCFFF
+            VVRCCCJFFF
+            VVVVCJJCFE
+            VVIVCCJJEE
+            VVIIICJJEE
+            MIIIIIJJEE
+            MIIISIJEEE
+            MMMISSJEEE
+            """;
+
+        var result = dayTwelve.PartOne(input.ToLines());
         result.Should().Be("1930");
     }
-    
+
     [Test]
     public void Should_Handle_Part_Two_Easy_Example()
     {

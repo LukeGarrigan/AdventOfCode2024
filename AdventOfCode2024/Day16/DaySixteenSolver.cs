@@ -156,7 +156,7 @@ public class DaySixteenSolver : ISolver
                 }
             }
         }
-        
+
         dist[(pos.row, pos.col, 0)] = 0;
 
         var count = 0;
@@ -195,21 +195,25 @@ public class DaySixteenSolver : ISolver
             var col = current.col + dc;
             var movementCost = currentCost + 1;
 
-            if (row >= 0 && row < grid.Length && col >= 0 && col < grid[0].Length && grid[row][col] != '#' &&
-                dist[(row, col, current.dir)] >= movementCost)
-
+            if (grid[row][col] != '#')
             {
-                dist[(row, col, current.dir)] = movementCost;
-
-                if (!prev.ContainsKey((row, col)))
+                if (dist[(row, col, current.dir)] > movementCost)
                 {
-                    prev[(row, col)] = new HashSet<(int, int)>();
+                    dist[(row, col, current.dir)] = movementCost;
+
+                    if (!prev.ContainsKey((row, col)))
+                    {
+                        prev[(row, col)] = new HashSet<(int, int)>();
+                    }
+
+                    prev[(row, col)].Add((current.row, current.col));
+
+                    queue.Enqueue((row, col, current.dir), movementCost);
                 }
-
-                prev[(row, col)].Add((current.row, current.col));
-
-
-                queue.Enqueue((row, col, current.dir), movementCost);
+                else if (dist[(row, col, current.dir)] == movementCost)
+                {
+                    prev[(row, col)].Add((current.row, current.col));
+                }
             }
         }
 

@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Data;
-using System.Security.Cryptography;
-
-namespace AdventOfCode2024.Day15;
+﻿namespace AdventOfCode2024.Day16;
 
 public class DaySixteenSolver : ISolver
 {

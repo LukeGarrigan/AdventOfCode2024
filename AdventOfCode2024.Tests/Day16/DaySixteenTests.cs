@@ -1,7 +1,8 @@
 ﻿using AdventOfCode2024.Day15;
+using AdventOfCode2024.Day16;
 using FluentAssertions;
 
-namespace AdventOfCode2024.Tests.Day15;
+namespace AdventOfCode2024.Tests.Day16;
 
 public class DaySixteenTests
 {

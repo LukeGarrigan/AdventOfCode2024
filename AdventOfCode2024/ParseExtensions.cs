@@ -20,4 +20,18 @@ public static class ParseExtensions
         }
         
     }
+    
+    public static void Print(this char[,] grid)
+    {
+        Console.WriteLine();
+        for (var i = 0; i < grid.GetLength(0); i++)
+        {
+            Console.WriteLine();
+            for (var j = 0; j < grid.GetLength(0); j++)
+            {
+                Console.Write(grid[i, j]);
+            }
+        }
+        
+    }
 }   

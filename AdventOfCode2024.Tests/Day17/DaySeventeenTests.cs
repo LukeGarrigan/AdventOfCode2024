@@ -100,4 +100,19 @@ public class DaySeventeenTests
                     """;
         solver.PartOne(input.ToLines()).Should().Be("4,6,3,5,6,3,5,2,1,0");
     }
+
+    [Test]
+    public void Should_Handle_Example_For_Part_Two()
+    {
+        var solver = new DaySeventeenSolver();
+
+        var input = """
+                    Register A: 2024
+                    Register B: 0
+                    Register C: 0
+
+                    Program: 0,3,5,4,3,0
+                    """;
+        solver.PartTwo(input.ToLines()).Should().Be("117440");
+    }
 }

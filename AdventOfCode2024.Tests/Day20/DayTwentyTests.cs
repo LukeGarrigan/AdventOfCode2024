@@ -34,19 +34,24 @@ public class DayTwentyTests
     public void Should_Handle_Part_Two()
     {
         var input = """
-                    r, wr, b, g, bwu, rb, gb, br
-
-                    brwrr
-                    bggr
-                    gbbr
-                    rrbgbr
-                    ubwu
-                    bwurrg
-                    brgr
-                    bbrgwb
+                    ###############
+                    #...#...#.....#
+                    #.#.#.#.#.###.#
+                    #S#...#.#.#...#
+                    #######.#.#.###
+                    #######.#.#...#
+                    #######.#.###.#
+                    ###..E#...#...#
+                    ###.#######.###
+                    #...###...#...#
+                    #.#####.#.###.#
+                    #.#...#.#.#...#
+                    #.#.#.#.#.#.###
+                    #...#...#...###
+                    ###############
                     """;
 
         var solver = new DayTwentySolver();
-        solver.PartTwo(input.ToLines()).Should().Be("16");
+        solver.PartTwo(input.ToLines()).Should().Be("200");
     }
 }

@@ -24,12 +24,12 @@ public class DayTwentyTwoTests
     {
         var input = """
                     1
-                    10
-                    100
+                    2
+                    3
                     2024
                     """;
 
         var solver = new DayTwentyTwoSolver();
-        solver.PartOne(input.ToLines()).Should().Be("37327623");
+        solver.PartTwo(input.ToLines()).Should().Be("23");
     }
 }

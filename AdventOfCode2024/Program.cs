@@ -1,7 +1,7 @@
-﻿using AdventOfCode2024.Day22;
+﻿using AdventOfCode2024.Day23;
 
-var lines = File.ReadAllLines("Day22/input.txt");
+var lines = File.ReadAllLines("Day23/input.txt");
 
-var solver = new DayTwentyTwoSolver();
-// Console.WriteLine(solver.PartOne(lines));
+var solver = new DayTwentyThreeSolver();
+Console.WriteLine(solver.PartOne(lines));
 Console.WriteLine(solver.PartTwo(lines));

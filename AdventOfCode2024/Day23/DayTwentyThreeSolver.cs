@@ -1,4 +1,6 @@
-﻿namespace AdventOfCode2024.Day23;
+﻿using System.Collections;
+
+namespace AdventOfCode2024.Day23;
 
 public class DayTwentyThreeSolver : ISolver
 {
@@ -59,6 +61,49 @@ public class DayTwentyThreeSolver : ISolver
 
     public string PartTwo(string[] input)
     {
-        throw new NotImplementedException();
+        var connections = GetConnections(input);
+
+
+        var biggest = new List<string>();
+        foreach (var connection in connections)
+        {
+            var network = BiggestNetwork(connections, connection);
+
+            if (network.Count > biggest.Count)
+            {
+                biggest = network;
+            }
+        }
+
+        return string.Join(",", biggest.OrderBy(l => l));
+    }
+
+    private List<string> BiggestNetwork(Dictionary<string, HashSet<string>> connections,
+        KeyValuePair<string, HashSet<string>> connection)
+    {
+        var queue = new Queue<(string, List<string>)>();
+
+        var biggestNetwork = new List<string>() { connection.Key };
+        queue.Enqueue((connection.Key, biggestNetwork));
+
+        while (queue.Any())
+        {
+            var node = queue.Dequeue();
+
+            if (node.Item2.Count > biggestNetwork.Count)
+            {
+                biggestNetwork = node.Item2;
+            }
+
+            foreach (var nextNode in connections[node.Item1])
+            {
+                if (node.Item2.All(n => connections[nextNode].Contains(n)))
+                {
+                    var network = new List<string>(node.Item2) { nextNode };
+                    queue.Enqueue((nextNode, network));
+                }
+            }
+        }
+        return biggestNetwork;
     }
 }
